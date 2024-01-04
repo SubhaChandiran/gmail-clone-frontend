@@ -1,12 +1,12 @@
 import Header from '../component/Header'
-import SiderBar from '../component/SiderBar';
+import SideBar from '../component/SideBar';
 
 const Main = () => {
     return (
         <>
             <div>
                 <Header />
-                <SiderBar />
+                <SideBar />
                 <div>Display mails</div>
             </div>
         </>
