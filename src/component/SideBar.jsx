@@ -2,12 +2,12 @@ import React from 'react';
 import { Drawer, styled } from '@mui/material';
 import SideBarContent from '../component/SideBarContent';
 
-function SideBar() {
+function SideBar({ openDrawer }) {
   return (
     <>
       <Drawer
         anchor='left'
-        open={true}
+        open={openDrawer}
         hideBackdrop={true}
         ModalProps={{
           keepMounted: true

@@ -13,7 +13,16 @@ const ComposeButton = styled(Button)({
 })
 
 const Container = styled(Box)({
-  padding: 8
+  padding: 8,
+  '& > ul': {
+    padding: '10px 0 0 5px',
+    fontSize: 14,
+    fontWeight: 500,
+    cursor: 'pointer'
+  },
+  '& > ul > li > svg': {
+    marginRight: 20
+  }
 })
 
 function SideBarContent() {
