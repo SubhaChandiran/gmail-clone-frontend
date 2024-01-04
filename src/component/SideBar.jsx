@@ -1,7 +1,8 @@
 import React from 'react';
 import { Drawer, styled } from '@mui/material';
+import SideBarContent from '../component/SideBarContent';
 
-function SiderBar() {
+function SideBar() {
   return (
     <>
       <Drawer
@@ -11,7 +12,7 @@ function SiderBar() {
         ModalProps={{
           keepMounted: true
         }}
-        variant='parsistent'
+        variant='persistent'
         sx={{
           '& .MuiDrawer-paper': {
             marginTop: '64px',
@@ -22,10 +23,10 @@ function SiderBar() {
           }
         }}
       >
-        Helloooo
+        <SideBarContent />
       </Drawer>
     </>
   )
 }
 
-export default SiderBar;
+export default SideBar;
