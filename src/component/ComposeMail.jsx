@@ -36,20 +36,60 @@ const RecipientWrapper = styled(Box)({
 const Footer = styled(Box)({
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '10px 15px',
-    alignItems: 'center'
-})
+    padding: '10px 15px'
+});
 
-function 
-ComposeMail() {
+const SendButton = styled(Button)({
+    background: '#0B57D0',
+    color: '#fff',
+    fontWeight: 500,
+    textTransform: 'none',
+    borderRadius: 18,
+    width: 100
+});
+
+function ComposeMail({ openDialog, setOpenDialog }) {
+
+    const config = {
+            Host: "smtp.elasticemail.com",
+            Username: "test12345@yopmail.com",
+            Password: "93959C8A1C90C8233FF4741FC7FD39A66274",
+            Port: 2525,
+    }
+
+    const closeComposeMail = (e) => {
+        e.preventDefault();
+
+        setOpenDialog(false);
+    }
+
+    const sendMail = (e) => {
+        e.preventDefault();
+
+        if (window.Email) {
+            window.Email.send({
+                ...config,
+                To: 'jerrysubash@gmail.com',
+                From: "jerrysubash@gmail.com",
+                Subject: "This is the subject",
+                Body: "And this is the body"
+            }).then(
+                message => alert(message)
+            );
+        }
+        
+
+        setOpenDialog(false);
+    }
+
   return (
       <Dialog
-          open={true}
+          open={openDialog}
           PaperProps={{sx: dialogStyle}}
       >
           <Header>
               <Typography>New Message</Typography>
-              <Close fontSize='small'></Close>
+              <Close fontSize='small' onClick = {(e) => closeComposeMail(e)} />
           </Header>
 
           <RecipientWrapper>
@@ -63,8 +103,8 @@ ComposeMail() {
               sx={{ '& .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
           />
           <Footer>
-              <Button>Send</Button>
-              <DeleteOutline />
+              <SendButton onClick={(e) => sendMail(e)} >Send</SendButton>
+              <DeleteOutline onClick={() => setOpenDialog(false)} />
           </Footer>
 
     </Dialog>
