@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Dialog, Box, Typography, styled, InputBase, TextField, Button } from '@mui/material';
 import { Close, DeleteOutline } from '@mui/icons-material';
 
@@ -50,10 +50,12 @@ const SendButton = styled(Button)({
 
 function ComposeMail({ openDialog, setOpenDialog }) {
 
+    const [data, setData] = useState({});
+
     const config = {
             Host: "smtp.elasticemail.com",
-            Username: "test12345@yopmail.com",
-            Password: "93959C8A1C90C8233FF4741FC7FD39A66274",
+            Username: "testmail12345@yopmail.com",
+            Password: "A8B5D83982EB98A515C6E23EBFB5FB2BD478",
             Port: 2525,
     }
 
@@ -69,10 +71,10 @@ function ComposeMail({ openDialog, setOpenDialog }) {
         if (window.Email) {
             window.Email.send({
                 ...config,
-                To: 'jerrysubash@gmail.com',
+                To: data.to,
                 From: "jerrysubash@gmail.com",
-                Subject: "This is the subject",
-                Body: "And this is the body"
+                Subject: data.subject,
+                Body: data.body
             }).then(
                 message => alert(message)
             );
@@ -80,6 +82,11 @@ function ComposeMail({ openDialog, setOpenDialog }) {
         
 
         setOpenDialog(false);
+    }
+
+    const onValueChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
+        console.log(data);
     }
 
   return (
@@ -93,14 +100,16 @@ function ComposeMail({ openDialog, setOpenDialog }) {
           </Header>
 
           <RecipientWrapper>
-              <InputBase placeholder='Recipients' />
-              <InputBase placeholder='Subject' />
+              <InputBase placeholder='Recipients' name='to' onChange={(e) => onValueChange(e)} />
+              <InputBase placeholder='Subject' name='subject' onChange={(e) => onValueChange(e)} />
           </RecipientWrapper>
 
           <TextField
               multiline
               rows={18}
-              sx={{ '& .MuiOutlinedInput-notchedOutline': { border: 'none' }}}
+              sx={{ '& .MuiOutlinedInput-notchedOutline': { border: 'none' } }}
+              onChange={(e) => onValueChange(e)}
+              name='body'
           />
           <Footer>
               <SendButton onClick={(e) => sendMail(e)} >Send</SendButton>
