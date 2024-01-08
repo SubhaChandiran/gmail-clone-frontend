@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Dialog, Box, Typography, styled, InputBase, TextField, Button } from '@mui/material';
 import { Close, DeleteOutline } from '@mui/icons-material';
+import env from "dotenv";
 
 const dialogStyle = {
     height: '90%',
@@ -54,8 +55,8 @@ function ComposeMail({ openDialog, setOpenDialog }) {
 
     const config = {
             Host: "smtp.elasticemail.com",
-            Username: "testmail12345@yopmail.com",
-            Password: "A8B5D83982EB98A515C6E23EBFB5FB2BD478",
+            Username: env.REACT_APP_USERNAME,
+            Password: env.REACT_APP_PASSWORD,
             Port: 2525,
     }
 
