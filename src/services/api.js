@@ -3,8 +3,8 @@ import axios from "axios";
 // backend URL
 const API_URL = "http://localhost:8000";
 
-const API_GMAIL = () => {
-  return axios({
+const API_GMAIL = async () => {
+  return await axios({
     method: "delete",
     url: `${API_URL}/endpoint`,
     data: {},
