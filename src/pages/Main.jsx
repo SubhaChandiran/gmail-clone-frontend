@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header from '../component/Header'
 import SideBar from '../component/SideBar';
+import Emails from '../component/Emails';
 
 const Main = () => {
 
@@ -15,7 +16,7 @@ const Main = () => {
             <div>
                 <Header toggleDrawer={toggleDrawer} />
                 <SideBar openDrawer={openDrawer} />
-                <div>Display mails</div>
+                <Emails openDrawer={ openDrawer } />
             </div>
         </>
     )
