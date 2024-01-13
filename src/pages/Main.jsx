@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Header from '../component/Header'
 import SideBar from '../component/SideBar';
+import { Outlet } from 'react-router-dom';
+import SuspenseLoader from '../component/common/SuspenseLoader';
+import { Box } from '@mui/material';
 import Emails from '../component/Emails';
 
 const Main = () => {
@@ -13,11 +16,15 @@ const Main = () => {
 
     return (
         <>
-            <div>
+            <>
                 <Header toggleDrawer={toggleDrawer} />
-                <SideBar openDrawer={openDrawer} />
-                <Emails openDrawer={ openDrawer } />
-            </div>
+                <Box>
+                    <SideBar openDrawer={openDrawer} />
+                    <Suspense fallback={<SuspenseLoader />}>
+                        <Outlet context={{ openDrawer }} />
+                    </Suspense>
+                </Box>
+            </>
         </>
     )
 }
