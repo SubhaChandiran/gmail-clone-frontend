@@ -53,7 +53,7 @@ function SideBarContent() {
           {
             SIDEBAR_DATA.map(data => (
               <NavLink key={data.name} to={`${routes.emails.path}/${data.name}`}>
-                <ListItem key={data.id} style={type === data.name.toLowerCase() ? {
+                <ListItem style={type === data.name.toLowerCase() ? {
                 backgroundColor: '#d3e3fd',
                 borderRadius: '0 16px 16px 0'
               }: {}} >

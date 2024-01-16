@@ -15,8 +15,8 @@ export const SIDEBAR_DATA = [
   },
   {
     id: 3,
-    name: "send",
-    title: "Send",
+    name: "sent",
+    title: "Sent",
     icon: SendOutlined,
   },
   {
