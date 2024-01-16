@@ -9,11 +9,11 @@ const Emails = () => {
 
     const { type } = useParams();
 
-    const getEmailsService = useApi(API_URLS.getEmailsFromType);
+    const getEmailsService = useApi(API_URLS.getEmailFromType);
 
     useEffect(() => {
         getEmailsService.call({}, type);
-    }, [])
+    }, [type])
 
     return (
         <div style={openDrawer ? { marginLeft: 250, width: '100%' } : { width: '100%' }}>
