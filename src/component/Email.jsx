@@ -1,5 +1,10 @@
 import { Box, Typography, Checkbox, styled } from "@mui/material";
-import { Star, StarBorder } from '@mui/icons-material'
+import { Star, StarBorder } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { routes } from "../routes/routes";
+import ViewEmail from "./ViewEmail";
+import useApi from "../hooks/useApi";
+import { API_URLS } from "../services/api.urls";
 
 
 const Wrapper = styled(Box)({
@@ -33,15 +38,40 @@ const Date = styled(Typography)({
     color: '#5F6368',
 })
 
-const Email = ({ email, selectedEmails }) => {
+const Email = ({ email, selectedEmails, setRefreshScreen, setSelectedEmails }) => {
+
+    const navigate = useNavigate();
+
+    const toggleStarredService = useApi(API_URLS.toggleStarredEmail);
+
+    const toggleStarredMails = () => {
+        toggleStarredService.call({ id: email._id, value: !email.starred })
+        setRefreshScreen(prevState => !prevState);
+    }
+
+    const onValueChange = () => {
+        if (selectedEmails.includes(email._id)) {
+            setSelectedEmails(prevState => prevState.filter(id => id != email._id));
+        } else {
+            setSelectedEmails(prevState => [...prevState, email._id]);
+        }
+    }
+
     return (
         <Wrapper>
             <Checkbox
                 size='small'
                 checked={selectedEmails.includes(email._id)}
+                onChange={() => onValueChange()}
             />
-            <StarBorder fontSize='small' style={{ marginRight: 10 }} />
-            <Box>
+            {
+                email.starred ?
+                    <Star fontSize="small" style={{ marginRight: 10, color: '#FFF200' }} onClick={() => toggleStarredMails()} />
+                :
+                    <StarBorder fontSize='small' style={{ marginRight: 10 }} onClick={() => toggleStarredMails()} />
+            }
+            
+            <Box onClick={() => navigate(routes.view.path, { state: { email: email } })}>
                 <Typography style={{ width: 200, overflow: 'hidden' }} >{email.name}</Typography>
                 <Indicator>Inbox</Indicator>
                 <Typography>{email.subject} {email.body && '-'} {email.body} </Typography>
