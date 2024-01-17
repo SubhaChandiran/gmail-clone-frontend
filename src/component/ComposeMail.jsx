@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Dialog, Box, Typography, styled, InputBase, TextField, Button } from '@mui/material';
 import { Close, DeleteOutline } from '@mui/icons-material';
-import env from "dotenv";
 import useApi from '../hooks/useApi';
 import { API_URLS } from '../services/api.urls';
 
