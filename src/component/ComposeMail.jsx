@@ -60,8 +60,8 @@ function ComposeMail({ openDialog, setOpenDialog }) {
 
     const config = {
             Host: "smtp.elasticemail.com",
-            Username: env.REACT_APP_USERNAME,
-            Password: env.REACT_APP_PASSWORD,
+            Username: 'testmail12345@yopmail.com',
+            Password: 'A8B5D83982EB98A515C6E23EBFB5FB2BD478',
             Port: 2525,
     }
 

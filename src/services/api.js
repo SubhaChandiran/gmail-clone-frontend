@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // backend URL
-const API_URL = process.env.BACKEND_URL;
+const API_URL = "https://gmail-clone-l0ay.onrender.com/";
 
 const API_GMAIL = async (urlObject, payload, type) => {
   return await axios({
