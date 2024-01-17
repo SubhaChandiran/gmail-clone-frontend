@@ -10,7 +10,7 @@ const Component = styled(Box)({
     width: '100%'
 });
 
-const styleDivider = styled(Divider)({
+const StyleDivider = styled(Divider)({
     width: '100%',
     marginTop: 10
 })
@@ -20,7 +20,7 @@ const NoMails = ({message}) => {
         <Component>
             <Typography>{ message.heading }</Typography>
             <Typography>{ message.subHeading }</Typography>
-            <styleDivider />
+            <StyleDivider />
         </Component>
     )
 }
